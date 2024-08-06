@@ -1,13 +1,3 @@
-persons = [
-  { firstName: false, lastName: 2 },
-  { firstName: "Roman", lastName: "Kowalski", nickname: "Namwok" },
-  { firstName: "Halina", lastName: "Malina", nickname: "Anilam" },
-  { firstName: "Halina", lastName: "Malinaa", nickname: "Anilam" },
-  { firstName: "B", lastName: "22" },
-  { firstName: "Jan", lastName: "Nowak", nickname: "Najwon" },
-  { firstName: "Kamil", lastName: null },
-];
-
 function addAge(persons) {
   const personsWithNicknames = persons.filter(
     (item) => item.nickname !== undefined
@@ -26,5 +16,3 @@ function addAge(persons) {
   });
   return personsWithNicknames;
 }
-
-console.log(addAge(persons));
