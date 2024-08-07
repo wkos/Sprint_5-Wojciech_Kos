@@ -1,3 +1,12 @@
+persons = [
+  { firstName: false, lastName: 2 },
+  { firstName: "Roman", lastName: "Kowalski" },
+  { firstName: "Halina", lastName: "Malina" },
+  { firstName: "B", lastName: "22" },
+  { firstName: "Jan", lastName: "Nowak" },
+  { firstName: "Kamil", lastName: null },
+];
+
 function createNickname(person) {
   if (
     typeof person.firstName === "string" &&
@@ -5,15 +14,17 @@ function createNickname(person) {
     person.firstName.length >= 3 &&
     person.lastName.length >= 3
   ) {
-    let fromFirstName = person.firstName;
-    fromFirstName = fromFirstName.slice(fromFirstName.length - 3);
-    fromFirstName = fromFirstName.split("").reverse().join("");
-
-    let fromLastName = person.lastName;
-    fromLastName = fromLastName.slice(0, 3);
-    fromLastName = fromLastName.split("").reverse().join("");
-
-    const nickname = fromFirstName.concat(fromLastName);
+    const fromFirstName = person.firstName
+      .slice(person.firstName.length - 3)
+      .split("")
+      .reverse()
+      .join("");
+    const fromLastName = person.lastName
+      .slice(0, 3)
+      .split("")
+      .reverse()
+      .join("");
+    const nickname = fromFirstName + fromLastName;
     return nickname.charAt(0).toUpperCase() + nickname.slice(1).toLowerCase();
   } else {
     return null;
@@ -21,10 +32,12 @@ function createNickname(person) {
 }
 
 function addNicks(persons) {
-  persons.forEach((person) => {
+  const updatedPersons = persons.map((person) => Object.assign({}, person));
+  updatedPersons.forEach((person) => {
     const nick = createNickname(person);
     if (nick !== null) {
       person.nickname = nick;
     }
   });
+  return updatedPersons;
 }
