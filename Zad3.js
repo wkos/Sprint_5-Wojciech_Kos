@@ -1,13 +1,6 @@
-persons = [
-  { firstName: "Roman", lastName: "Kowalski", nickname: "Namwok", age: 25 },
-  { firstName: "Halina", lastName: "Malina", nickname: "Anilam", age: 12 },
-  { firstName: "Halina", lastName: "Malinaa", nickname: "Anilam", age: 13 },
-  { firstName: "Jan", lastName: "Nowak", nickname: "Najwon", age: 8 },
-];
-
 function addMostCommonLetters(persons) {
-  const result = [];
-  persons.forEach((person) => {
+  const result = persons.map((person) => Object.assign({}, person));
+  result.forEach((person) => {
     const text = person.firstName + person.lastName + person.nickname;
     const frequency = {};
     for (let letter of text) {
@@ -40,17 +33,10 @@ function addMostCommonLetters(persons) {
       }
     }
 
-    const newProperty = [
-      firstAlphabeticalLetter,
-      lettersWithMaxFrequency[0][1],
-    ];
     person.mostCommonLetter = {
-      letter: newProperty[0],
-      count: newProperty[1],
+      letter: firstAlphabeticalLetter,
+      count: lettersWithMaxFrequency[0][1],
     };
-    result.push(person);
   });
   return result;
 }
-
-console.log(addMostCommonLetters(persons));
