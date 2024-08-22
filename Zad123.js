@@ -49,7 +49,7 @@ function addAge(persons) {
 
 function addMostCommonLetters(persons) {
   const result = persons.map((person) => {
-    const text = person.firstName + person.lastName + person.nickname;
+    const text = `${person.firstName}${person.lastName}${person.nickname}`;
     const frequency = {};
     for (let letter of text) {
       if (frequency[letter]) {
